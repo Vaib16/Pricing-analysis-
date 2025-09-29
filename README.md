@@ -1,7 +1,6 @@
 # Tesco Pricing Analyst Demo Project
 
-This repository demonstrates how a pricing analyst can manage **40,000+ SKUs across 120 categories** with daily price changes, using Python + BI.  
-It aligns with Tesco’s Pricing Analyst role (2025).
+This repository demonstrates how a pricing analyst can manage **40,000+ SKUs across 120 categories** with daily price changes, using Python 
 
 ---
 
@@ -45,7 +44,6 @@ It aligns with Tesco’s Pricing Analyst role (2025).
 
 ## 🛠️ Tools
 - **Python**: pandas, matplotlib, statsmodels  
-- **Power BI**: dashboards for exceptions & index trends  
 - **Jupyter Notebooks**: reproducible analysis  
 
 ---
