@@ -1,65 +1,73 @@
-# Tesco Pricing Analyst Demo Project
+Tesco Pricing Analyst Demo Project
 
-This repository demonstrates how a pricing analyst can manage **40,000+ SKUs across 120 categories** with daily price changes, using Python 
+This repository demonstrates how a pricing analyst can scale decision-making for 40,000+ SKUs across 120 categories with daily price changes. The solution uses Python for data modeling and produces BI-ready outputs for reporting and automation.
 
----
+🚀 Objectives
 
-## 🚀 Objectives
-- Automate **data validation** and anomaly detection.
-- Track Tesco’s **price index vs competitors** to monitor value perception.
-- Forecast **seasonal demand** for budgeting and promotions.
-- Measure **promo uplift vs margin impact** for campaign evaluation.
+Automate data validation and anomaly detection to cut manual review.
 
----
+Monitor Tesco’s price index vs competitors to track value perception.
 
-## 📂 Project Tasks
+Forecast seasonal demand for stock and budgeting alignment.
 
-### 1. Data Validation & Exceptions Queue
-- Flags missing data, extreme jumps (>20%), and overpriced SKUs (>5% vs competitor).
-- Produces `exceptions_queue.csv` (~50 risky SKUs/day out of 40k).
+Quantify promotion uplift vs margin impact for campaign evaluation.
 
-### 2. Price Index Tracker
-- Computes monthly price index = `our price ÷ best competitor price`.
-- Tracks trends at **category × month** level.
+📂 Project Components
+1. Data Validation & Exceptions Queue
 
-### 3. Seasonal Forecasting
-- Decomposes demand into **trend + seasonality**.
-- Forecasts baseline + uplift (e.g. December peaks).
+Rules for missing prices, extreme jumps (>20%), and overpriced SKUs (>5% vs competitor).
 
-### 4. Promo Impact Analysis
-- Identifies promo months (≥15% price drop).
-- Compares units sold **Before vs During vs After**.
-- Evaluates **volume uplift vs margin compression**.
+Produces exceptions_queue.csv, reducing daily scope from 40,000 SKUs → ~50 high-risk SKUs.
 
----
+2. Price Index Tracker
 
-## 📊 Results
+Calculates monthly price index = our_price ÷ best_competitor_price.
 
-- ✅ Exceptions Queue: reduced review workload 40k → ~50 SKUs/day.  
-- ✅ Price Index: flagged categories drifting above competitor index.  
-- ✅ Seasonal Forecast: projected demand uplift for key months.  
-- ✅ Promo Analysis: highlighted volume/margin trade-off.  
+Aggregates at SKU and category level to surface competitive drift.
 
----
+3. Seasonal Forecasting
 
-## 🛠️ Tools
-- **Python**: pandas, matplotlib, statsmodels  
-- **Jupyter Notebooks**: reproducible analysis  
+Time-series decomposition (trend + seasonality) with Holt-Winters modeling.
 
----
+Generates baseline demand forecasts and seasonal multipliers.
 
-## 📌 Next Steps
-- Integrate cost data to refine margin estimates.  
-- Automate a **rule-based proposal engine**.  
-- Extend dashboards with **promo efficiency KPIs**.  
+4. Promotion Impact Analysis
 
----
+Detects promo windows (≥15% MoM price drop).
 
-## 📷 Sample Visuals
-![Price Index Trend](reports/visuals/price_index_trend.png)  
-![Promo Impact](reports/visuals/promo_impact.png)
+Compares units sold Before / During / After.
 
----
+Evaluates sales uplift vs margin compression.
 
-## 📄 License
-MIT License. Free to use for learning and demonstration.
+📊 Results
+
+✅ Exceptions Queue: reduced daily review workload by >99%.
+
+✅ Price Index Tracker: flagged overpricing risks (e.g., Garden Tools index >1.10).
+
+✅ Seasonal Forecasting: projected demand peaks (e.g., December uplift).
+
+✅ Promo Impact: revealed trade-offs between sales growth and profitability.
+
+🛠️ Tech Stack
+
+Python: pandas, numpy, matplotlib, statsmodels
+
+Jupyter Notebooks: reproducible workflow and ETL
+
+BI-ready Outputs: star-schema design for Power BI dashboards
+
+📌 Roadmap
+
+Incorporate COGS data for true margin accuracy.
+
+Build a rule-based proposal engine for pricing recommendations.
+
+Extend Power BI dashboards with promo efficiency KPIs and automated alerts.
+
+Integrate dbt, Airflow, and Great Expectations for governance and orchestration.
+
+
+📄 License
+
+MIT License – Free to use for learning, demo, and case-study purposes.
