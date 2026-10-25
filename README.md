@@ -1,4 +1,4 @@
-# Tesco Pricing Analyst Demo Project  
+#  Pricing Analyst Demo Project  
 
 This repository demonstrates how a pricing analyst can scale decision-making for **40,000+ SKUs across 120 categories** with daily price changes. The solution uses **Python for data modeling** and produces **BI-ready outputs** for reporting and automation.  
 
