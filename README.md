@@ -1,67 +1,57 @@
-#  Pricing Analyst Demo Project  
+Exception Tracking & Seasonal Demand Analysis
 
-This repository demonstrates how a pricing analyst can scale decision-making for **40,000+ SKUs across 120 categories** with daily price changes. The solution uses **Python for data modeling** and produces **BI-ready outputs** for reporting and automation.  
+A Python project that shows how to monitor a large product catalogue without reviewing it line by line: automated validation rules surface only the records that need attention, and seasonal forecasting shows when demand will peak.
 
----
+Scale: 40,000+ SKUs across 120 categories, with daily changes. Data: <!-- Confirm and keep one: "Simulated dataset built to mirror a large retail catalogue." OR describe the real source. -->
 
-## 🚀 Objectives  
-1. Automate **data validation** and anomaly detection to cut manual review.  
-2. Monitor Tesco’s **price index vs competitors** to track value perception.  
-3. Forecast **seasonal demand** for stock and budgeting alignment.  
-4. Quantify **promotion uplift vs margin impact** for campaign evaluation.  
+The problem
 
----
+When a catalogue changes every day, manual review doesn't scale. Errors and outliers (missing values, sudden jumps, records out of line with a benchmark) get missed, and planning teams don't see seasonal peaks early enough to prepare stock and budgets.
 
-## 📂 Project Components  
+What the project does
+1. Data validation & exceptions queue
 
-### 1. Data Validation & Exceptions Queue  
-- Rules for missing prices, extreme jumps (>20%), and overpriced SKUs (>5% vs competitor).  
-- Produces `exceptions_queue.csv`, reducing daily scope from **40,000 SKUs → ~50 high-risk SKUs**.  
+Rule-based checks in pandas flag:
 
-### 2. Price Index Tracker  
-- Calculates monthly price index = `our_price ÷ best_competitor_price`.  
-- Aggregates at **SKU and category level** to surface competitive drift.  
+Missing values (e.g. blank prices)
+Abnormal changes greater than 20% day on day
+Benchmark gaps, where an item sits more than 5% above the comparison value
 
-### 3. Seasonal Forecasting  
-- Time-series decomposition (trend + seasonality) with Holt-Winters modeling.  
-- Generates **baseline demand forecasts** and seasonal multipliers.  
+Flagged records are written to exceptions_queue.csv, so review effort goes only where it is needed.
 
-### 4. Promotion Impact Analysis  
-- Detects promo windows (≥15% MoM price drop).  
-- Compares units sold **Before / During / After**.  
-- Evaluates **sales uplift vs margin compression**.  
+Result: daily review scope reduced from ~40,000 SKUs to ~50 high-risk items (>99% reduction).
 
----
+2. Index tracking against a benchmark
 
-## 📊 Results  
+A monthly index (own value ÷ best benchmark value), aggregated at SKU and category level, highlights categories drifting out of line.
 
-- ✅ **Exceptions Queue**: reduced daily review workload by >99%.  
-- ✅ **Price Index Tracker**: flagged overpricing risks (e.g., Garden Tools index >1.10).  
-- ✅ **Seasonal Forecasting**: projected demand peaks (e.g., December uplift).  
-- ✅ **Promo Impact**: revealed trade-offs between sales growth and profitability.  
+Result: flagged at-risk categories, e.g. Garden Tools with an index above 1.10.
 
----
+3. Seasonal demand forecasting
 
-## 🛠️ Tech Stack  
+Trend and seasonality decomposition with Holt-Winters (statsmodels) produces baseline demand forecasts and seasonal multipliers by category, to support stock and budget planning.
 
-- **Python**: pandas, numpy, matplotlib, statsmodels  
-- **Jupyter Notebooks**: reproducible workflow and ETL  
-- **BI-ready Outputs**: star-schema design for Power BI dashboards  
+Result: projected demand peaks ahead of time, e.g. a December uplift.
 
----
+4. Promotion impact analysis
 
-## 📌 Roadmap  
+Promotion windows are detected as month-on-month drops of 15% or more. Units sold before, during and after each window are compared to weigh volume uplift against margin impact.
 
-- Incorporate **COGS data** for true margin accuracy.  
-- Build a **rule-based proposal engine** for pricing recommendations.  
-- Extend Power BI dashboards with **promo efficiency KPIs** and automated alerts.  
-- Integrate **dbt, Airflow, and Great Expectations** for governance and orchestration.  
+Result: showed where extra volume did and did not justify the margin given up.
 
----
-
-## 📷 Sample Visuals  
-
----
-
-## 📄 License  
-MIT License – Free to use for learning, demo, and case-study purposes.  
+Tech stack
+Python: pandas, numpy, matplotlib, statsmodels
+Jupyter Notebook for a reproducible ETL and analysis workflow
+Star-schema outputs designed to feed Power BI dashboards
+Files
+File	Purpose
+Pricing.ipynb	Full workflow: validation, exceptions queue, index, forecasting, promotion analysis
+README.md	This document
+Sample visuals
+<!-- Add 2 screenshots before sharing: the exceptions queue and the seasonal forecast chart. -->
+Next steps
+Add cost data (COGS) for accurate margin figures
+Extend Power BI dashboards with exception alerts and KPI tracking
+Add data-quality testing (e.g. Great Expectations) and scheduled runs
+License
+MIT
