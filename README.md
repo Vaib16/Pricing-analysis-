@@ -3,6 +3,7 @@
 A Python project that shows how to monitor a large product catalogue without reviewing it line by line: automated validation rules surface only the records that need attention, and seasonal forecasting shows when demand will peak.
 
 **Scale:** 40,000+ SKUs across 120 categories, with daily changes.
+
 **Data:** Simulated dataset built to mirror a large retail catalogue.
 
 ---
